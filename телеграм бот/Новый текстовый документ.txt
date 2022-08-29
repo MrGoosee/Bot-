@@ -1,0 +1,17 @@
+from bs4 import BeautifulSoup
+import requests
+
+url = 'https://wall.alphacoders.com/by_category.php?id=3&name=Anime+Wallpapers&filter=4K+Ultra+HD'
+page = requests.get(url)
+
+allimg = []
+img = []
+
+soup = BeautifulSoup(page.text, "html.parser")
+
+allimg = soup.findAll('img', class_= 'img-responsive big-thumb thumb-desktop')
+for data in allimg:
+        img.append(data['src'])
+print(img)
+print(allimg)
+
